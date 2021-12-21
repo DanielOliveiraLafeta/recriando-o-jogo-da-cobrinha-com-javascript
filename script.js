@@ -52,13 +52,17 @@ function startGame() {
     if(snake[0].y > 15*box && direction == "down") snake[0].y = 0;
     if(snake[0].y < 0 && direction == "up") snake[0].y = 16*box;
 
-    //incia a função para desenhar a tela
-    createBG()  
-    
-    //inicia a função para desenhar a snake na tela
-    createSnake()
+    //quando a cabeça da snake chocar com o corpo da snake e mostra gameover
+    for(i=1; i<snake.length; i++) {
+        if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
+            clearInterval(game)
+            alert("Game Over :(")
+        } 
+    }
 
-    //inicia a função para desenhar a food na tela
+    //incia as funções para criar a Tela, Snake, Food
+    createBG()  
+    createSnake()
     drawFood()
 
     let snakeX = snake[0].x //posição da snake no eixo de x
@@ -70,10 +74,11 @@ function startGame() {
     if(direction == "up") snakeY -= box
     if(direction == "down") snakeY += box
 
+    //quando a snake comer uma food
     if(snakeX != food.x || snakeY != food.y) {
-        //retira o último elemento do array(da snake)
         snake.pop()
     }else {
+        //aumenta o array(ou a snake)
         food.x = Math.floor(Math.random()*15+1)*box
         food.y = Math.floor(Math.random()*15+1)*box
     }
@@ -87,5 +92,5 @@ function startGame() {
 }
 
 
-let game = setInterval(startGame, 100) // renova a função startGame a cada 100 milisegundos
+let game = setInterval(startGame, 100) // inicia o jogo e renova a função startGame a cada 100 milisegundos
 
