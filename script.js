@@ -52,8 +52,13 @@ function startGame() {
     if(snake[0].y > 15*box && direction == "down") snake[0].y = 0;
     if(snake[0].y < 0 && direction == "up") snake[0].y = 16*box;
 
+    //incia a função para desenhar a tela
     createBG()  
+    
+    //inicia a função para desenhar a snake na tela
     createSnake()
+
+    //inicia a função para desenhar a food na tela
     drawFood()
 
     let snakeX = snake[0].x //posição da snake no eixo de x
@@ -65,8 +70,13 @@ function startGame() {
     if(direction == "up") snakeY -= box
     if(direction == "down") snakeY += box
 
-    //retira o último elemento do array(da snake)
-    snake.pop()
+    if(snakeX != food.x || snakeY != food.y) {
+        //retira o último elemento do array(da snake)
+        snake.pop()
+    }else {
+        food.x = Math.floor(Math.random()*15+1)*box
+        food.y = Math.floor(Math.random()*15+1)*box
+    }
 
     //adiciona elemento na primeira posição do array(da snake)
     let newHead = {
