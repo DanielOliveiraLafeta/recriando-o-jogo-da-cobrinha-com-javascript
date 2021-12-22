@@ -5,8 +5,8 @@ let snake = []
 
 //posição da snake na tela
 snake[0] = {
-    x: 8 * box,
-    y: 8 * box
+    x: 8*box,
+    y: 8*box
 }
 let direction = "right"
 
@@ -78,7 +78,7 @@ function startGame() {
     if(snakeX != food.x || snakeY != food.y) {
         snake.pop()
     }else {
-        //aumenta o array(ou a snake)
+        //muda a posição da food depois da snake comer uma food
         food.x = Math.floor(Math.random()*15+1)*box
         food.y = Math.floor(Math.random()*15+1)*box
     }
@@ -92,5 +92,5 @@ function startGame() {
 }
 
 
-let game = setInterval(startGame, 100) // inicia o jogo e renova a função startGame a cada 100 milisegundos
+let game = setInterval(startGame, 100) // inicia o jogo e renova a função startGame a cada 100 milisegundos(velocidade do jogo)
 
