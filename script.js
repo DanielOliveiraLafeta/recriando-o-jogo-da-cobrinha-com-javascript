@@ -57,6 +57,7 @@ function startGame() {
         if(snake[0].x == snake[i].x && snake[0].y == snake[i].y) {
             clearInterval(game)
             alert("Game Over :(")
+            window.location.reload()
         } 
     }
 
@@ -77,6 +78,7 @@ function startGame() {
     //quando a snake comer uma food
     if(snakeX != food.x || snakeY != food.y) {
         snake.pop()
+        document.getElementById("scoreUser").innerHTML = snake.length //atualiza a pontuação do jogador
     }else {
         //muda a posição da food depois da snake comer uma food
         food.x = Math.floor(Math.random()*15+1)*box
@@ -92,5 +94,18 @@ function startGame() {
 }
 
 
-let game = setInterval(startGame, 100) // inicia o jogo e renova a função startGame a cada 100 milisegundos(velocidade do jogo)
+function startSG() {
+    document.getElementById("snake").removeAttribute("hidden") //mostra a tela do jogo
+    document.getElementById("scoreSG").removeAttribute("hidden") //mostra a pontuação do jogador
+    document.getElementById("startLi").hidden = "true" //escode o botão de iniciar do menu
+}
 
+function backToMenuSG() {
+    document.getElementById("snake").hidden = "true" //esconde a tela da snake
+    document.getElementById("scoreSG").hidden = "true" //esconde a pontução do jogador
+    document.getElementById("startLi").removeAttribute("hidden") //mostra o botão de iniciar do menu
+    snake.length = 1 //reseta o tamanho da snake
+}
+
+//inicia o jogo e renova a função startGame a cada 100 milisegundos(velocidade do jogo)
+let game = setInterval(startGame, 100) 

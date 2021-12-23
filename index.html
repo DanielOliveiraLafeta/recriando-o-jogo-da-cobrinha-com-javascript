@@ -9,7 +9,14 @@
     <title>Snake Game</title>
 </head>
 <body>
-    <h1>SNAKE GAME</h1>
-    <canvas id="snake" width="512" height="512"></canvas> <!-- elemento que trabalho com parte gráfica no html -->
+    <h1 id="SG" onclick="backToMenuSG()">SNAKE GAME</h1>
+    <ul class="snake-menu">
+        <li id="startLi" onclick="startSG()" aria-hidden="false">New Game</li>
+    </ul>
+    <header>
+        <span id="scoreSG" hidden>score: <i id="scoreUser"></i></span>
+    </header>
+    <canvas id="snake" width=512 height=512 hidden></canvas> <!-- renderiza os elementos gráfcos no HTML-->
+    
 </body>
 </html>
